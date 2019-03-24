@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                message: 'vue'
+            },
+            beforeCreate: function(){
+                //console.log('beforeCreate'); // el+data =>  undefind
+            },
+            created: function(){
+                //console.log('created'); // data 有数据，  el=>  undefind
+            },
+            beforeMount: function(){
+                //console.log(this.$el);  // el+data 有数据 ； 页面的message未渲染
+                //console.log('beforeMount');
+            },
+            mounted: function(){
+                //console.log(this.$el); // el+data 有数据 ； 页面的message也渲染
+                //console.log('mounted');
+            },
+            beforeUpdate: function(){
+                console.log('beforeUpdate');
+            },
+            updated: function(){
+                console.log('updated');
+            },
+            beforeDestroy: function(){
+                console.log('beforeDestroy');
+            },
+            destroyed: function(){
+                console.log('destroyed');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        th,td{
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr is="con" v-for="(item,index) of info" :key="index" :content="item" :index="index"  @remove="deleted"></tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        Vue.component('con', {
+            props:['content','index'],
+            data:function(){
+                return {
+                    message: '子组件的id'
+                }
+            },
+            template: `<tr>
+                            <td>{{message}} -- {{content.id}}</td>
+                            <td>{{content.name}}</td>
+                            <td>{{content.age}}</td>
+                            <td @click="del">{{content.handel}}</td>
+                        </tr>`,
+            methods: {
+                del: function(){
+                    this.$emit('remove',this.index);
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                info: [
+                    {
+                        id: 1,
+                        name: 'tl',
+                        age: 18,
+                        handel: '删除'
+                    },
+                    {
+                        id: 2,
+                        name: 'hxl',
+                        age: 19,
+                        handel: '删除'
+                    }
+                ]
+            },
+            methods: {
+                deleted: function(index){
+                    console.log(index);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        th,td{
+            padding: 5px 10px;
+        }
+        div{
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <counter :count="1" @change="addNum"></counter>
+        <counter :count="2" @change="addNum"></counter>
+        
+        <div>{{total}}</div>
+    </div>
+    <script>
+        var counter = {
+            props: ['count'],
+            data: function(){
+                return {
+                    number: this.count
+                }
+            },
+            template: '<div @click="incre">{{number}}</div>',
+            methods: {
+                incre: function(){
+                    this.number++;
+                    this.$emit('change',1);
+                }
+            }
+        };
+        var vm = new Vue({
+            el: '#app',
+            components:{
+                counter: counter
+            },
+            data: {
+                total:3
+            },
+            methods: {
+                addNum: function(val){
+                    this.total += val;
+                    console.log(val);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

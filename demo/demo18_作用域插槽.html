@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        th,td{
+            padding: 5px 10px;
+        }
+        div{
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="app">
+        <child>
+            <template slot-scope="user">
+                <ul>
+                    <li v-for="item in user.data">{{item}}</li>
+                </ul>
+            </template>
+        </child>
+    </div>
+    <script>
+        Vue.component('child',{
+            data: function(){
+                return {
+                    data: [1,2,3,4]
+                }
+            },
+            template: `<ul>
+                            <slot :data="data"></slot>
+                        </ul>`
+        });
+        var vm = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>

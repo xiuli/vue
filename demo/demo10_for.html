@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(item,index) of list" :key="item.id">
+            {{index}} --- {{item.title}}
+        </div>
+        <template  v-for="(item,index) of list">
+            <span>
+                {{index}}
+            </span>
+            <span>
+                {{item.title}}
+            </span>
+        </template>
+
+        <div v-for="(item,key,index) of userInfo">
+                {{key}} --- {{item}} --- {{index}}
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                list: [
+                    {id: 1, title: 'vue'},
+                    {id: 2, title: 'react'},
+                    {id: 3, title: 'angular'}
+                ],
+                userInfo: {
+                    name: 'leilei',
+                    age: '18'
+                }
+            }
+        });
+
+        Vue.set(vm.list, 1, {id: 3, title:'jquery'});
+        vm.$set(vm.list, 2, {id: 5, title:'javascript'});
+
+        Vue.set(vm.userInfo, 'address', 'beijin');
+        vm.$set(vm.userInfo, 'sex', 'girl');
+        vm.userInfo = Object.assign({}, vm.userInfo, {
+            age: 27,
+            favoriteColor: 'Vue Green'
+        })
+    </script>
+</body>
+</html>

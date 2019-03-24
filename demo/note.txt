@@ -1,0 +1,64 @@
+v-for 
+v-on:click  @click
+v-model  数据双向绑定
+MVP
+MVVM
+
+组件化：
+    全局组件(component)，局部组件(components)
+    父组件通过v-bind:content="item" 将值传给子组件，
+    子组件通过props:['content']接受父组件传的值，
+    子组件通过$emit('delete', 1)将事件传给父组件，
+    父组件通过v-on:delete="" 接听事件
+
+生命周期：
+    beforeCreate
+    created
+    beforeMount
+    mounted
+    beforeUpdate
+    updated
+    beforeDestroye
+    destroyed
+
+v-text
+v-html
+
+计算属性、方法、监听器
+    计算属性：computed，带有缓存机制
+        getter：获取属性值
+        setter: 设置属性值
+    方法：methods，不带有缓存机制
+    监听器：watch，带有缓存机制
+
+class&style
+    对象绑定：  
+        :class="{active: isActive}"
+    数组绑定：
+        :class="[activated]"
+    style：
+        :style="styleObj"
+
+v-if：等于false的时候，不渲染元素
+v-show：等于false的时候，把渲染出来的元素隐藏 -->> 频繁切换的时候，用v-show
+
+v-for： key值要唯一，尽量不使用index    循环数组&循环对象
+    模板占位符：template
+    改变数组结构：pop, push, shift, unshift, reverse, sort, splice
+    
+组件：
+    1、table里面，tr是子组件的时候，模板使用<tr is="子组件名"></tr>; 
+       使用is属性解决模板bug里面的问题(table/ul/ol/select等)
+    2、子组件里面定义data的时候，data必须是一个函数，data:function(){return {content:'vue'}}
+    3、ref：ref在元素上的时候，this.$refs.名称，获取的是dom元素，
+       ref在组件上的时候，this.$refs.名称，获取的是子组件的实例
+    4、vue单向数据流，子组件只能使用父组件传过来的值，不能直接改变父组件的值（子组件存在多个调用，修改父组件的值，其他子组件的值也修改了），通过定义data的方式实现
+    5、<counter :count="1"></counter>  加了冒号是数字，
+       <counter count="1"></counter>   不加冒号是字符串
+    6、父组件通过属性的形式给子组件传值，子组件通过事件触发的方式给父组件传值
+    7、父组件向子组件传递标签，插槽，slot，slot-scope：显示不显示和怎样显示
+
+
+
+
+

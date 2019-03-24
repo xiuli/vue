@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        th,td{
+            padding: 5px 10px;
+        }
+        div{
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="app">
+        <component :is="type"></component>
+        <button @click="click_toggle">change</button>
+    </div>
+    <script>
+        Vue.component('child-one',{
+           template:'<p v-once>child-one</p>'
+        });
+        Vue.component('child-two',{
+           template:'<p v-once>child-two</p>'
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                type: 'child-one'
+            },
+            methods: {
+                click_toggle: function(){
+                    this.type = (this.type === 'child-one' ? 'child-two' : 'child-one');
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

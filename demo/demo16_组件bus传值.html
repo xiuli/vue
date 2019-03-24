@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        th,td{
+            padding: 5px 10px;
+        }
+        div{
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="app">
+        <child content="vue"></child>
+        <child content="react"></child>
+    </div>
+    <script>
+        Vue.prototype.bus = new Vue();
+        Vue.component('child', {
+            data: function(){
+                return {
+                    selfContent: this.content
+                }
+            },
+            props: {
+                content: String
+            },
+            template: '<div @click="change">{{selfContent}}</div>',
+            methods: {
+                change: function(){
+                    this.bus.$emit('changeHtml',this.selfContent);
+                }
+            },
+            mounted: function(){
+                this.bus.$on('changeHtml', (val) =>{
+                    this.selfContent = val;
+                });
+            }
+        });
+        var vm = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>

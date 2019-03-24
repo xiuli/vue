@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model="val">
+            <button @click="addLi">提交</button>
+        </div>
+        
+        <ul>
+            <li v-for="item in liList">
+                {{item.name}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                 val: '',
+                 liList: [
+                     {'name': 'vue'},
+                     {'name': 'react'}
+                 ]
+            },
+            methods: {
+                addLi: function(){
+                    var json={};
+                    json.name = this.val;
+                    this.liList.push(json);
+                    this.val = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <input type="text" v-model="val"  @keyup.enter="addLi">
+            <button @click="addLi">提交</button>
+        </div>
+        
+        <!-- <ul>
+            <li v-for="item in liList">
+                {{item}}
+            </li>
+        </ul> -->
+        <ul>
+            <todo-item v-for="(item,index) in liList" :content="item" :key="index"></todo-item>
+        </ul>
+    </div>
+    <script>
+        // 全局组件
+
+        // Vue.component('TodoItem', {
+        //     props: ['content'],
+        //     template: '<li>{{content}}</li>'
+        // });
+
+        // 局部组件
+        var TodoItem = {
+            props: ['content'],
+            template: '<li>{{content}}</li>'
+        }
+        var vm = new Vue({
+            el: '#app',
+            components: {
+                TodoItem: TodoItem
+            },
+            data:{
+                 val: '',
+                 liList:[]
+            },
+            methods: {
+                addLi: function(){
+                    this.liList.push(this.val);
+                    this.val = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

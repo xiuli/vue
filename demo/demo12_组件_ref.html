@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        th,td{
+            padding: 5px 10px;
+        }
+        div{
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div @click="getHtml" ref="vue">hello vue</div>
+
+        <counter ref="counter1" @change="numChange"></counter>
+        <counter ref="counter2" @change="numChange"></counter>
+        
+        <div>{{total}}</div>
+    </div>
+    <script>
+        Vue.component('counter',{
+            data: function(){
+                return {
+                    number: 0
+                }
+            },
+            template: '<div @click="numAdd">{{number}}</div>',
+            methods: {
+                numAdd: function(){
+                    this.number++;
+                    this.$emit('change',this.number);
+                }
+            }
+        });
+        
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                total:0
+            },
+            methods: {
+                getHtml: function(val){
+                    //console.log(val.target.innerHTML);
+                    console.log(this.$refs.vue.innerHTML);
+                },
+                numChange: function(val){
+                    //console.log(val);
+                    //this.total += val;
+                    //console.log(this.$refs.counter1);
+                    this.total = this.$refs.counter1.number+this.$refs.counter2.number;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

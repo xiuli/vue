@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-if="show">
+            用户名：<input type="text" key="username" />
+        </div>
+        <div v-else>
+            邮箱：<input type="text" key="email" />
+        </div>
+        <div v-show="show">{{message}}</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                show: false,
+                message: 'hello vue'
+            }
+        });
+    </script>
+</body>
+</html>

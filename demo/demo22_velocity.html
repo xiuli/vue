@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <link rel="stylesheet" href="./css/animate.css">
+    <script src="./js/vue.js"></script>
+    <script src="./js/velocity.min.js"></script>
+    <style>
+        th,td{
+            padding: 5px 10px;
+        }
+        div{
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="app">
+        <transition 
+            name="fade"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+        >
+            <div v-if="show">hello vue</div>
+        </transition>
+        
+        <button @click="toggle">change</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {
+                toggle: function(){
+                    this.show = !this.show
+                },
+                beforeEnter: function(el){
+                    el.style.opacity = 0;
+                },
+                enter: function(el,done){
+                    Velocity(el,{
+                        opacity: 1
+                    },{
+                        duration: 1000,
+                        complete: done
+                    });
+                },
+                afterEnter: function(el){
+                    el.style.color = "red"
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

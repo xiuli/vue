@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        th,td{
+            padding: 5px 10px;
+        }
+        div{
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <child content="1254234523542"></child>
+    </div>
+    <script>
+        Vue.component('child',{
+            //props: ['content'],
+            // props: {
+            //     content: [Number, String]
+            // },
+            props: {
+                content: {
+                    type: [Number, String],
+                    required: false,
+                    default: 'default value',
+                    validator: function(value){
+                        return value.length > 10
+                    }
+                }
+            },
+            template: '<div>{{content}}</div>',
+            //template: '<div>hello</div>'
+        });
+        var vm = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>

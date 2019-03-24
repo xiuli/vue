@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <div @click="toggleColor" :class="{active:isActive}">hello vue</div> -->
+        <!-- <div @click="toggleColor" :class="[activated]">hello vue</div> -->
+        <div @click="toggleColor" :style="styleObj">hello vue</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                isActive: false,
+                activated: '',
+                styleObj: {
+                    color: 'black'
+                }
+            },
+            methods: {
+                toggleColor: function(){
+                    // this.isActive = !this.isActive;
+
+                    // if(!this.activated){
+                    //     this.activated = 'active';
+                    // }else{
+                    //     this.activated = '';
+                    // }
+
+                    // this.activated = this.activated === 'active' ? '' : 'active'
+
+                    this.styleObj.color = this.styleObj.color === 'black' ? 'red' : 'black';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

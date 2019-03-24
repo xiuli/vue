@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{fullName}}
+        {{age}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                firstName: 'tian',
+                lastName: 'lei',
+                fullName: 'tian lei',
+                age:18
+            },
+
+            // 计算属性 -- 属性通过计算得来，带有缓存机制
+            // computed: {
+            //     fullName: function(){
+            //         console.log('执行了计算属性');
+            //         return this.firstName+ ' '+ this.lastName;
+            //     }
+            // },
+
+            // 方法 -- 不带有缓存机制
+            // methods: {
+            //     fullName: function(){
+            //         console.log('执行了计算属性');
+            //         return this.firstName+ ' '+ this.lastName;
+            //     }
+            // },
+
+            // 监听器 -- 监听属性的变化，带有缓存机制
+            watch: {
+                firstName: function(){
+                    console.log('执行了一次firstName');
+                    this.fullName = this.firstName + ' ' + this.lastName;
+                },
+                lastName: function(){
+                    console.log('执行了一次lastName');
+                    this.fullName = this.firstName + ' ' + this.lastName;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
