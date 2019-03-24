@@ -1,6 +1,7 @@
 <template>
     <div>
-        list
+        <div class="list">list</div>
+        <router-link to="/">home</router-link>
     </div>
 </template>
 <script>
@@ -9,5 +10,7 @@ export default {
 }
 </script>
 <style>
-    
+    .list,a{
+        font-size:50px;
+    }
 </style>
