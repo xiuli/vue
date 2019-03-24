@@ -1,7 +1,6 @@
 <template>
     <div>
-        <div class="home">home</div>
-        <router-link to="/list">list</router-link>
+        hello vue
     </div>
 </template>
 <script>
@@ -10,8 +9,5 @@ export default {
 }
 </script>
 <style>
-    .home,a{
-        font-size:50px;
-    }
 
 </style>
